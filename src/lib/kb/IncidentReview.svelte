@@ -15,6 +15,12 @@
   };
   const repo = 'https://github.com/DennyRedeye/mega-s01e03-what-it-shows';
   const issues = { parser: 3, hint: 1, timing: 2 };
+  const status = {
+    parser: 'Completed: parser fixed',
+    hint: 'Not planned: booking-v3 retired',
+    timing: 'Open: needs investigation',
+    unplaced: 'Open: needs classification',
+  };
 </script>
 
 <p>
@@ -26,7 +32,7 @@
 
 <table>
   <thead>
-    <tr><th>Problem</th><th>Reports</th><th>Tenants</th><th>First to last report</th><th>Ticket</th></tr>
+    <tr><th>Problem</th><th>Reports</th><th>Tenants</th><th>First to last report</th><th>Engineering status</th><th>Ticket</th></tr>
   </thead>
   <tbody>
     {#each groups as group (group.cause)}
@@ -35,6 +41,7 @@
         <td>{group.reports.length}</td>
         <td>{group.tenants}</td>
         <td>{group.firstSeen} to {group.lastSeen}</td>
+        <td>{status[group.cause]}</td>
         <td>
           {#if group.cause === 'unplaced'}
             Needs a separate investigation ticket

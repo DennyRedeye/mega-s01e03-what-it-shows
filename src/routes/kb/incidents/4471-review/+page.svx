@@ -2,8 +2,8 @@
 layout: runbook
 title: '#4471 review: dates and timing are not one problem'
 owner: DennyRedeye
-status: reviewed export; live desk not yet checked
-reviewed: 2026-10-29
+status: parser fixed; hint not planned; timing open
+reviewed: 2026-11-01
 signature: DennyRedeye
 ---
 
@@ -19,9 +19,30 @@ fix queued. Its table groups by tenant locale and booking form, so it cannot dis
 timing report from a month/day swap. This review reads the report bodies as well.
 
 <Callout>
-Do not close every report in #4471 when the parser fix ships. The form-hint problem needs a
-different fix, and the timing reports need investigation before a cause can be confirmed.
+Engineering closed #4471 on 5 October after fixing the parser. The hint will not be fixed
+because booking-v3 was retired. Neither disposition establishes a resolution for the timing
+reports, which remain open for investigation.
 </Callout>
+
+## Engineering update after the export
+
+DennyRedeye supplied the following engineering update from the course challenge page on
+1 November 2026:
+
+```text
+#4471 · closed 05 oct
+parser fixed
+fix(dates): parse dd/mm for eu locales
+hint won't fix booking-v3 form retired
+```
+
+The parser ticket is completed, and the hint ticket is closed as not planned. The timing
+ticket stays open because the update gives no resolution for its reports. Closing the merged
+desk ticket does not prove that every problem merged into it was fixed.
+
+This update changes ticket dispositions, not the historical report membership. The counts
+below still describe the 4 October export. No later report export, commit hash, rollout
+details or timing reproduction has been independently verified.
 
 ## Reviewed report counts
 
@@ -36,8 +57,9 @@ tags are not substitutes for the tenant's configuration.
 
 R-41200 describes 7 April becoming 4 July. R-41205 comes from Morrow Tax, whose tenant locale
 is fr-FR, even though intake saw an en-US browser and tagged it as a hint problem. The
-requested fix is to parse according to the tenant's declared date order and reject ambiguous
-input when its format is not known.
+engineering update reports that the parser now parses dd/mm for EU locales, so the parser
+ticket is completed. The export explains the original failure; it does not prove the
+implementation details, regression coverage or rollout of the reported fix.
 
 ## booking-v3: the form tells people the wrong date order
 
@@ -46,9 +68,9 @@ Pale Harbour use that form with day-first tenant locales. People follow the mont
 but the form reads their input in the tenant's day-first order. This is a separate interface
 contract problem, not the shared parser fix.
 
-R-41230 is a Copper Studio form report: 6 January becomes 1 June. The requested fix is to
-derive the visible date hint, validation and form parsing from the same tenant format, and
-test booking-v2 and booking-v3 separately.
+R-41230 is a Copper Studio form report: 6 January becomes 1 June. Engineering retired
+booking-v3 and marked the hint as won't fix, so the hint ticket is closed as not planned,
+not completed by a date-hint patch. The historical reports remain in the audit.
 
 ## Timing: keep the uncertainty visible
 
@@ -76,10 +98,11 @@ approval.
 
 ## What the desk must check next
 
-The support desk keeps working while this export is reviewed. Check the live queue for new
-reports, changed merge assignments, shipped fixes and the current owner of each ticket.
-Recompute counts from unique IDs after that check. Do not present this export's counts as
-live totals, and do not mark a proposal as accepted without the desk's approval.
+The engineering update supersedes the export's queued-parser and active-booking-v3 status.
+The support desk keeps working: check for later reports, changed merge assignments, parser
+rollout details, and the retirement's scope. Recompute counts from unique IDs if a new report
+export becomes available. Do not present this export's counts as live totals or close the
+timing investigation merely because #4471 was closed.
 
 ## Reproducing this page
 

@@ -48,6 +48,11 @@ The public tickets are [parser (374 reports)](https://github.com/DennyRedeye/meg
 and [timing investigation (5 reports)](https://github.com/DennyRedeye/mega-s01e03-what-it-shows/issues/2).
 These counts describe the export, not the live support desk.
 
+The engineering update supplied by DennyRedeye from the course page on 1 November says
+#4471 closed on 5 October: the parser was fixed, and booking-v3 was retired with the hint
+marked won't fix. The parser issue is completed, the hint issue is not planned, and the
+timing investigation remains open. Historical counts and report membership are unchanged.
+
 ### Run and rebuild
 
 Use Node.js 24 or newer:
