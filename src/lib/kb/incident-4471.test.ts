@@ -11,17 +11,21 @@ const tenants: Tenant[] = readdirSync(directory).map((name) =>
 );
 const tenantOf = (report: Report) => tenants.find((tenant) => tenant.handle === report.tenant);
 
-test('separates timing evidence before tenant-based date classification and counts unique reports', () => {
+test('preserves exported desk counts and flags timing reports without subtracting them', () => {
   const groups = reviewIncident(reports as Report[], tenantOf);
   assert.deepEqual(
     groups.map((group) => [group.cause, group.reports.length]),
-    [['parser', 374], ['hint', 33], ['timing', 5]],
+    [['parser', 379], ['hint', 33], ['timing', 5]],
   );
   assert.deepEqual(
     groups.find((group) => group.cause === 'timing')?.reports.map((report) => report.id),
     ['R-41202', 'R-41209', 'R-41236', 'R-41344', 'R-41620'],
   );
   assert.equal(new Set(groups.flatMap((group) => group.reports.map((report) => report.id))).size, 412);
+  const parserIds = new Set(groups.find((group) => group.cause === 'parser')?.reports.map((report) => report.id));
+  for (const report of groups.find((group) => group.cause === 'timing')?.reports ?? []) {
+    assert.ok(parserIds.has(report.id));
+  }
 });
 
 test('uses the tenant form and locale rather than the browser intake tag', () => {

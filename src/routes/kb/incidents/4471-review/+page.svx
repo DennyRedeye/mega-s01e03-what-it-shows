@@ -9,6 +9,7 @@ signature: DennyRedeye
 
 <script>
   import IncidentReview from '#lib/kb/IncidentReview.svelte';
+  import CauseTable from '#lib/kb/CauseTable.svelte';
   import RenderStamp from '#lib/kb/RenderStamp.svelte';
   import Callout from '#lib/kb/Callout.svelte';
 </script>
@@ -44,16 +45,24 @@ This update changes ticket dispositions, not the historical report membership. T
 below still describe the 4 October export. No later report export, commit hash, rollout
 details or timing reproduction has been independently verified.
 
-## Reviewed report counts
+## Exported desk view
+
+<CauseTable ticket={4471} />
+
+The desk counts the parser and hint groups using its exported component. Its one-day
+notes are included and footnoted under parser, not subtracted from that group.
+
+## Engineering status and timing investigation
 
 <IncidentReview />
 
 ## Shared parser: month-first interpretation
 
 The shared parser reads dates month first, but the tenant directory identifies day-first
-locales. App and email reports, and booking-v2 form reports, belong to this parser problem
-unless their reviewed bodies require separate timing investigation. Browser locale and intake
-tags are not substitutes for the tenant's configuration.
+locales. The exported desk classifier counts app and email reports, and booking-v2 form
+reports, under parser. It also counts the timing cases there, with a footnote; the count
+is not proof that the parser explains those bodies. Browser locale and intake tags are
+not substitutes for the tenant's configuration.
 
 R-41200 describes 7 April becoming 4 July. R-41205 comes from Morrow Tax, whose tenant locale
 is fr-FR, even though intake saw an en-US browser and tagged it as a hint problem. The
@@ -108,8 +117,9 @@ timing investigation merely because #4471 was closed.
 
 The words live in this page. The tables and report IDs are computed by IncidentReview from
 the unchanged report export, tenant directory and desk notes. The review helper removes
-overlapping report IDs and separates the notes' timing cases before reusing the existing
-cause classifier. It does not invent a timezone root cause or change the original export.
+overlapping report IDs and keeps the existing cause groups intact. It flags the notes'
+timing cases as an overlapping investigation subset, without subtracting them from the
+desk's parser count. It does not invent a timezone root cause or change the original export.
 
 The public repository contains the source page and a prerendered HTML copy under docs.
 The HTML uses these components at build time, so it includes the tables and desk reference,

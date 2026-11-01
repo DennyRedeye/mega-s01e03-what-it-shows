@@ -14,10 +14,7 @@ export function reviewIncident(
 ): IncidentGroup[] {
   const merged = uniqueById(reports).filter((report) => report.mergedInto === ticket);
   const timing = merged.filter((report) => timingIds.has(report.id));
-  const groups: IncidentGroup[] = groupByCause(
-    merged.filter((report) => !timingIds.has(report.id)),
-    tenantOf,
-  );
+  const groups: IncidentGroup[] = groupByCause(merged, tenantOf);
 
   if (timing.length) {
     const days = timing.map((report) => report.receivedAt.slice(0, 10)).sort();

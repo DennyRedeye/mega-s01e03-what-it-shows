@@ -27,7 +27,9 @@
   The export contains <strong>{reports.length}</strong> rows and
   <strong>{merged.length}</strong> unique reports merged into #4471.
   <strong>{reports.length - uniqueById(reports as Report[]).length}</strong> overlapping rows do not represent additional reports.
-  The reviewed split below counts each report ID once.
+  The exported parser and hint groups count each report ID once. The timing row is an
+  overlapping investigation subset within parser, not additional reports; do not add it
+  to the exported total.
 </p>
 
 <table>
@@ -74,7 +76,9 @@
 <p>
   The desk's <code>oneDayMove</code> notes flag these report IDs. Their bodies do not describe
   the month/day swaps used to support the parser and hint groups. This is an investigation
-  ticket, not proof that all these reports share one timezone or delivery bug.
+  ticket, not proof that all these reports share one timezone or delivery bug. The exported
+  desk view counts them under parser and footnotes them there; this review preserves that
+  count while making the uncertainty visible.
 </p>
 
 {#each timing as report (report.id)}
@@ -82,7 +86,7 @@
   <blockquote>{report.body}</blockquote>
 {/each}
 
-<h3>Report-to-ticket audit</h3>
+<h3>Exported groups and overlapping investigation audit</h3>
 
 <details>
   <summary>Show every report ID in its reviewed group</summary>

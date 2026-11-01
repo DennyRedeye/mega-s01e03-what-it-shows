@@ -43,10 +43,12 @@ The signed review is in
 accepted decision 0001 are unchanged. The older incident page remains the desk's historical
 account; use the review for the evidence-backed split.
 
-The public tickets are [parser (374 reports)](https://github.com/DennyRedeye/mega-s01e03-what-it-shows/issues/3),
+The public tickets are [parser (379 reports)](https://github.com/DennyRedeye/mega-s01e03-what-it-shows/issues/3),
 [form hint (33 reports)](https://github.com/DennyRedeye/mega-s01e03-what-it-shows/issues/1),
 and [timing investigation (5 reports)](https://github.com/DennyRedeye/mega-s01e03-what-it-shows/issues/2).
-These counts describe the export, not the live support desk.
+These counts describe the export, not the live support desk. The five timing reports
+are an overlapping investigation subset footnoted inside the desk's parser group:
+379 + 33 = 412 unique reports, not 417.
 
 The engineering update supplied by DennyRedeye from the course page on 1 November says
 #4471 closed on 5 October: the parser was fixed, and booking-v3 was retired with the hint
