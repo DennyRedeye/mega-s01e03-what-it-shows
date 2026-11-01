@@ -1,0 +1,26 @@
+{
+  "name": "mega-s01e03-what-it-shows",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "test": "node --test src/lib/kb/incident-4471.test.ts",
+    "preview": "vite preview"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-static": "^3.0.0",
+    "@sveltejs/kit": "^2.0.0",
+    "@sveltejs/vite-plugin-svelte": "^6.0.0",
+    "@types/node": "^24.0.0",
+    "mdsvex": "^0.12.0",
+    "svelte": "^5.0.0",
+    "svelte-check": "^4.0.0",
+    "typescript": "^5.0.0",
+    "vite": "^7.0.0"
+  }
+}
